@@ -30,7 +30,7 @@ def run_evaluation(
     model: ASRModel, sample_rate: int = 16_000, num_workers: int = 2
 ) -> Dict[str, Dict[str, float]]:
     """Запускает оценку модели на всех subsets датасета с прогресс-баром."""
-    ds = init_dataset(sample_rate=sample_rate, num_workers=num_workers)
+    ds = init_dataset(target_sr=sample_rate, num_workers=num_workers)
     report = {}
     for subset in tqdm(ds.keys(), desc="Evaluating subsets"):
         subset_data = ds[subset]
