@@ -6,6 +6,7 @@ import json
 
 from .dataset import init_dataset
 from .interfaces import ASRModel
+from .text_corrector import correct_texts
 
 
 def clear_text(text: str) -> str:
@@ -37,7 +38,8 @@ def run_evaluation(
         audio_samples = [s["audio"] for s in subset_data]
         references = [s["text"] for s in subset_data]
         predictions = model.transcribe(audio_samples)
-        metrics = score_metrics(predictions, references)
+        corrected_texts = correct_texts(predictions)
+        metrics = score_metrics(corrected_texts, references)
         report[subset] = metrics
     return report
 
