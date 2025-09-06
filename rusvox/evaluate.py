@@ -3,6 +3,7 @@ import string
 from typing import Dict, List
 from tqdm import tqdm
 import json
+import re
 
 from .dataset import init_dataset
 from .interfaces import ASRModel
@@ -10,9 +11,10 @@ from .text_corrector import correct_texts
 
 
 def clear_text(text: str) -> str:
-    """Очищает текст для расчёта метрик: strip, lower, remove punctuation."""
+    """Очищает текст: strip, lower, удаляет всё кроме букв и пробелов (латиница + кириллица)."""
     text = text.strip().lower()
-    text = text.translate(str.maketrans("", "", string.punctuation))
+    text = re.sub(r"[^a-zа-яё\s]", "", text)
+    text = " ".join(text.split())
     return text
 
 

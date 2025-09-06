@@ -73,6 +73,10 @@ save_report(report, "my_report.json")
 print(report)
 ```
 
+## Замечание
+
+Для того, чтобы оценка проходила корректно, из текста убираются все символы, кроме букв и пробелов. Также все цифры преобразуются в буквенный вид с помощью [unsloth/Qwen3-4B-Instruct-2507](https://huggingface.co/unsloth/Qwen3-4B-Instruct-2507).
+
 ## Описание датасетов
 
 Датасеты, используемые в RusVox, представляют собой подмножества корпуса [RuASRBenchmark](https://huggingface.co/datasets/Vikhrmodels/RuASRBenchmark)
